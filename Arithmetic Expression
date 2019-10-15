@@ -1,0 +1,73 @@
+string arithmeticExpressions(vector<int> arr) {
+    if(arr.size()==1){
+        if(arr[0]%101==0){
+            return "Yes";
+        }
+        else{
+            return "No";
+        }
+    }
+    int opres,a=arr[0],b=arr[1];
+    opres=arr[0]+arr[1];
+    arr[1]=opres;
+    arr.erase(arr.begin());
+   
+   string res=arithmeticExpressions(arr),fresult="";
+   cout<<"string got after + operation="<<res<<" and the values are "<<a<<" "<<b<<endl;
+    if(res=="Yes"){
+        fresult=to_string(a)+"+"+to_string(b);
+        return fresult;
+    }
+    else if(res=="No"){
+        a=stoi(a);
+        b=stoi(b);
+    opres=a-b;
+    arr[0]=opres;
+    string res=arithmeticExpressions(arr),fresult="";
+    cout<<"string got after - operation="<<res<<" and the values are "<<a<<" "<<b<<endl;
+    if(res=="Yes"){
+        fresult=to_string(a)+"-"+to_string(b);
+        return fresult;
+    }
+    else if(res=="No"){
+         a=stoi(a);
+        b=stoi(b);
+    opres=a*b;
+    arr[0]=opres;
+    string res=arithmeticExpressions(arr),fresult="";
+    cout<<"string got after * operation="<<res<<" and the values are "<<a<<" "<<b<<endl;
+    if(res=="Yes"){
+        fresult=to_string(a)+"*"+to_string(b);
+        return fresult;
+    }
+    else if(res=="No"){
+        return "No";
+    }
+    else{
+        int i=0;
+        while(isdigit(res[i])){i++;}
+         cout<<"expression got "<<res<<endl;
+         fresult=to_string(a)+"*"+to_string(b)+res.substr(i,res.length()-i);
+         return fresult;
+         cout<<"expression formed "<<fresult<<endl;
+    }
+    }
+    else{
+        int i=0;
+        while(isdigit(res[i])){i++;}
+         cout<<"expression got "<<res<<endl;
+         fresult=to_string(a)+"-"+to_string(b)+res.substr(i,res.length()-i);
+         return fresult;
+         cout<<"expression formed "<<fresult<<endl;
+    }
+    }
+    else{
+        int i=0;
+        while(isdigit(res[i])){i++;}
+         cout<<"expression got "<<res<<endl;
+         fresult=to_string(a)+"+"+to_string(b)+res.substr(i,res.length()-i);
+         return fresult;
+         cout<<"expression formed "<<fresult<<endl;
+    }
+    return fresult;
+}
